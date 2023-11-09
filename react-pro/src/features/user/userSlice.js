@@ -1,4 +1,5 @@
-import { createSlice, createAsyncThink } from "@reduxjs/toolkit";
+
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
@@ -6,7 +7,7 @@ const initialState = {
   users: [],
   error: "",
 };
-export const fetchUsers = createAsyncThink("user/fetchUsers", () => {
+export const fetchUsers = createAsyncThunk("user/fetchUsers", () => {
   return axios
     .get("https://jsonplaceholder.typicode.com/users")
     .then((response) => response.data.map((user) => user.name));
